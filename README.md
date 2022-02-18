@@ -1,3 +1,9 @@
+# Fork that bumps `js-yaml` to v4
+
+See [#137](https://github.com/jonschlinkert/gray-matter/pull/137)
+
+---
+
 # gray-matter [![NPM version](https://img.shields.io/npm/v/gray-matter.svg?style=flat)](https://www.npmjs.com/package/gray-matter) [![NPM monthly downloads](https://img.shields.io/npm/dm/gray-matter.svg?style=flat)](https://npmjs.org/package/gray-matter) [![NPM total downloads](https://img.shields.io/npm/dt/gray-matter.svg?style=flat)](https://npmjs.org/package/gray-matter) [![Linux Build Status](https://img.shields.io/travis/jonschlinkert/gray-matter.svg?style=flat&label=Travis)](https://travis-ci.org/jonschlinkert/gray-matter)
 
 > Parse front-matter from a string or file. Fast, reliable and easy to use. Parses YAML front matter by default, but also has support for YAML, JSON, TOML or Coffee Front-Matter, with options to set custom delimiters. Used by metalsmith, assemble, verb and many other projects.
@@ -24,9 +30,9 @@ Please see the [changelog](CHANGELOG.md) to learn about breaking changes that we
 Add the HTML in the following example to `example.html`, then add the following code to `example.js` and run `$ node example` (without the `$`):
 
 ```js
-const fs = require('fs');
-const matter = require('gray-matter');
-const str = fs.readFileSync('example.html', 'utf8');
+const fs = require("fs");
+const matter = require("gray-matter");
+const str = fs.readFileSync("example.html", "utf8");
 console.log(matter(str));
 ```
 
@@ -35,10 +41,7 @@ console.log(matter(str));
 Converts a string with front-matter, like this:
 
 ```handlebars
----
-title: Hello
-slug: home
----
+--- title: Hello slug: home ---
 <h1>Hello world!</h1>
 ```
 
@@ -47,21 +50,21 @@ Into an object like this:
 ```js
 {
   content: '<h1>Hello world!</h1>',
-  data: { 
-    title: 'Hello', 
-    slug: 'home' 
+  data: {
+    title: 'Hello',
+    slug: 'home'
   }
 }
 ```
 
 ## Why use gray-matter?
 
-* **simple**: main function takes a string and returns an object
-* **accurate**: better at catching and handling edge cases than front-matter parsers that rely on regex for parsing
-* **fast**: faster than other front-matter parsers that use regex for parsing
-* **flexible**: By default, gray-matter is capable of parsing [YAML](https://github.com/nodeca/js-yaml), [JSON](http://en.wikipedia.org/wiki/Json) and JavaScript front-matter. But other [engines](#optionsengines) may be added.
-* **extensible**: Use [custom delimiters](#optionsdelimiters), or add support for [any language](#optionsengines), like [TOML](http://github.com/mojombo/toml), [CoffeeScript](http://coffeescript.org), or [CSON](https://github.com/bevry/cson)
-* **battle-tested**: used by [assemble](https://github.com/assemble/assemble), [metalsmith](https://github.com/segmentio/metalsmith), [phenomic](https://github.com/phenomic/phenomic), [verb](https://github.com/assemble/verb), [generate](https://github.com/generate/generate), [update](https://github.com/update/update) and many others.
+- **simple**: main function takes a string and returns an object
+- **accurate**: better at catching and handling edge cases than front-matter parsers that rely on regex for parsing
+- **fast**: faster than other front-matter parsers that use regex for parsing
+- **flexible**: By default, gray-matter is capable of parsing [YAML](https://github.com/nodeca/js-yaml), [JSON](http://en.wikipedia.org/wiki/Json) and JavaScript front-matter. But other [engines](#optionsengines) may be added.
+- **extensible**: Use [custom delimiters](#optionsdelimiters), or add support for [any language](#optionsengines), like [TOML](http://github.com/mojombo/toml), [CoffeeScript](http://coffeescript.org), or [CSON](https://github.com/bevry/cson)
+- **battle-tested**: used by [assemble](https://github.com/assemble/assemble), [metalsmith](https://github.com/segmentio/metalsmith), [phenomic](https://github.com/phenomic/phenomic), [verb](https://github.com/assemble/verb), [generate](https://github.com/generate/generate), [update](https://github.com/update/update) and many others.
 
 <details>
 <summary><strong>Rationale</strong></summary>
@@ -74,18 +77,18 @@ Some libraries met most of the requirements, but _none met all of them_.
 
 **Here are the most important**:
 
-* Be usable, if not simple
-* Use a dependable and well-supported library for parsing YAML
-* Support other languages besides YAML
-* Support stringifying back to YAML or another language
-* Don't fail when no content exists
-* Don't fail when no front matter exists
-* Don't use regex for parsing. This is a relatively simple parsing operation, and regex is the slowest and most error-prone way to do it.
-* Have no problem reading YAML files directly
-* Have no problem with complex content, including **non-front-matter** fenced code blocks that contain examples of YAML front matter. Other parsers fail on this.
-* Support stringifying back to front-matter. This is useful for linting, updating properties, etc.
-* Allow custom delimiters, when it's necessary for avoiding delimiter collision.
-* Should return an object with at least these three properties:
+- Be usable, if not simple
+- Use a dependable and well-supported library for parsing YAML
+- Support other languages besides YAML
+- Support stringifying back to YAML or another language
+- Don't fail when no content exists
+- Don't fail when no front matter exists
+- Don't use regex for parsing. This is a relatively simple parsing operation, and regex is the slowest and most error-prone way to do it.
+- Have no problem reading YAML files directly
+- Have no problem with complex content, including **non-front-matter** fenced code blocks that contain examples of YAML front matter. Other parsers fail on this.
+- Support stringifying back to front-matter. This is useful for linting, updating properties, etc.
+- Allow custom delimiters, when it's necessary for avoiding delimiter collision.
+- Should return an object with at least these three properties:
   - `data`: the parsed YAML front matter, as a JSON object
   - `content`: the contents as a string, without the front matter
   - `orig`: the "original" content (for debugging)
@@ -97,7 +100,7 @@ Some libraries met most of the requirements, but _none met all of them_.
 Using Node's `require()` system:
 
 ```js
-const matter = require('gray-matter');
+const matter = require("gray-matter");
 ```
 
 Or with [typescript](https://www.typescriptlang.org)
@@ -111,7 +114,7 @@ import * as matter from 'gray-matter';
 Pass a string and [options](#options) to gray-matter:
 
 ```js
-console.log(matter('---\ntitle: Front Matter\n---\nThis is content.'));
+console.log(matter("---\ntitle: Front Matter\n---\nThis is content."));
 ```
 
 Returns:
@@ -119,15 +122,15 @@ Returns:
 ```js
 {
   content: '\nThis is content.',
-  data: { 
-    title: 'Front Matter' 
-  } 
+  data: {
+    title: 'Front Matter'
+  }
 }
 ```
 
 More about the returned object in the following section.
 
-***
+---
 
 ## Returned object
 
@@ -135,20 +138,20 @@ gray-matter returns a `file` object with the following properties.
 
 **Enumerable**
 
-* `file.data` **{Object}**: the object created by parsing front-matter
-* `file.content` **{String}**: the input string, with `matter` stripped
-* `file.excerpt` **{String}**: an excerpt, if [defined on the options](#optionsexcerpt)
-* `file.empty` **{String}**: when the front-matter is "empty" (either all whitespace, nothing at all, or just comments and no data), the original string is set on this property. See [#65](https://github.com/jonschlinkert/gray-matter/issues/65) for details regarding use case.
-* `file.isEmpty` **{Boolean}**: true if front-matter is empty.
+- `file.data` **{Object}**: the object created by parsing front-matter
+- `file.content` **{String}**: the input string, with `matter` stripped
+- `file.excerpt` **{String}**: an excerpt, if [defined on the options](#optionsexcerpt)
+- `file.empty` **{String}**: when the front-matter is "empty" (either all whitespace, nothing at all, or just comments and no data), the original string is set on this property. See [#65](https://github.com/jonschlinkert/gray-matter/issues/65) for details regarding use case.
+- `file.isEmpty` **{Boolean}**: true if front-matter is empty.
 
 **Non-enumerable**
 
 In addition, the following non-enumberable properties are added to the object to help with debugging.
 
-* `file.orig` **{Buffer}**: the original input string (or buffer)
-* `file.language` **{String}**: the front-matter language that was parsed. `yaml` is the default
-* `file.matter` **{String}**: the _raw_, un-parsed front-matter string
-* `file.stringify` **{Function}**: [stringify](#stringify) the file by converting `file.data` to a string in the given language, wrapping it in delimiters and prepending it to `file.content`.
+- `file.orig` **{Buffer}**: the original input string (or buffer)
+- `file.language` **{String}**: the front-matter language that was parsed. `yaml` is the default
+- `file.matter` **{String}**: the _raw_, un-parsed front-matter string
+- `file.stringify` **{Function}**: [stringify](#stringify) the file by converting `file.data` to a string in the given language, wrapping it in delimiters and prepending it to `file.content`.
 
 ## Run the examples
 
@@ -172,19 +175,19 @@ $ node examples/<example_name>
 
 **Links to examples**
 
-* [coffee](examples/coffee.js)
-* [excerpt-separator](examples/excerpt-separator.js)
-* [excerpt-stringify](examples/excerpt-stringify.js)
-* [excerpt](examples/excerpt.js)
-* [javascript](examples/javascript.js)
-* [json-stringify](examples/json-stringify.js)
-* [json](examples/json.js)
-* [restore-empty](examples/restore-empty.js)
-* [sections-excerpt](examples/sections-excerpt.js)
-* [sections](examples/sections.js)
-* [toml](examples/toml.js)
-* [yaml-stringify](examples/yaml-stringify.js)
-* [yaml](examples/yaml.js)
+- [coffee](examples/coffee.js)
+- [excerpt-separator](examples/excerpt-separator.js)
+- [excerpt-stringify](examples/excerpt-stringify.js)
+- [excerpt](examples/excerpt.js)
+- [javascript](examples/javascript.js)
+- [json-stringify](examples/json-stringify.js)
+- [json](examples/json.js)
+- [restore-empty](examples/restore-empty.js)
+- [sections-excerpt](examples/sections-excerpt.js)
+- [sections](examples/sections.js)
+- [toml](examples/toml.js)
+- [yaml-stringify](examples/yaml-stringify.js)
+- [yaml](examples/yaml.js)
 
 ## API
 
@@ -194,15 +197,15 @@ Takes a string or object with `content` property, extracts and parses front-matt
 
 **Params**
 
-* `input` **{Object|String}**: String, or object with `content` string
-* `options` **{Object}**
-* `returns` **{Object}**
+- `input` **{Object|String}**: String, or object with `content` string
+- `options` **{Object}**
+- `returns` **{Object}**
 
 **Example**
 
 ```js
-const matter = require('gray-matter');
-console.log(matter('---\ntitle: Home\n---\nOther stuff'));
+const matter = require("gray-matter");
+console.log(matter("---\ntitle: Home\n---\nOther stuff"));
 //=> { data: { title: 'Home'}, content: 'Other stuff' }
 ```
 
@@ -212,15 +215,15 @@ Stringify an object to YAML or the specified language, and append it to the give
 
 **Params**
 
-* `file` **{String|Object}**: The content string to append to stringified front-matter, or a file object with `file.content` string.
-* `data` **{Object}**: Front matter to stringify.
-* `options` **{Object}**: [Options](#options) to pass to gray-matter and [js-yaml](https://github.com/nodeca/js-yaml).
-* `returns` **{String}**: Returns a string created by wrapping stringified yaml with delimiters, and appending that to the given string.
+- `file` **{String|Object}**: The content string to append to stringified front-matter, or a file object with `file.content` string.
+- `data` **{Object}**: Front matter to stringify.
+- `options` **{Object}**: [Options](#options) to pass to gray-matter and [js-yaml](https://github.com/nodeca/js-yaml).
+- `returns` **{String}**: Returns a string created by wrapping stringified yaml with delimiters, and appending that to the given string.
 
 **Example**
 
 ```js
-console.log(matter.stringify('foo bar baz', {title: 'Home'}));
+console.log(matter.stringify("foo bar baz", { title: "Home" }));
 // results in:
 // ---
 // title: Home
@@ -234,14 +237,14 @@ Synchronously read a file from the file system and parse front matter. Returns t
 
 **Params**
 
-* `filepath` **{String}**: file path of the file to read.
-* `options` **{Object}**: [Options](#options) to pass to gray-matter.
-* `returns` **{Object}**: Returns [an object](#returned-object) with `data` and `content`
+- `filepath` **{String}**: file path of the file to read.
+- `options` **{Object}**: [Options](#options) to pass to gray-matter.
+- `returns` **{Object}**: Returns [an object](#returned-object) with `data` and `content`
 
 **Example**
 
 ```js
-const file = matter.read('./content/blog-post.md');
+const file = matter.read("./content/blog-post.md");
 ```
 
 ### [.test](index.js#L193)
@@ -250,9 +253,9 @@ Returns true if the given `string` has front matter.
 
 **Params**
 
-* `string` **{String}**
-* `options` **{Object}**
-* `returns` **{Boolean}**: True if front matter exists.
+- `string` **{String}**
+- `options` **{Object}**
+- `returns` **{Boolean}**: True if front matter exists.
 
 ## Options
 
@@ -269,17 +272,17 @@ If set to `excerpt: true`, it will look for the frontmatter delimiter, `---` by 
 **Example**
 
 ```js
-const str = '---\nfoo: bar\n---\nThis is an excerpt.\n---\nThis is content';
+const str = "---\nfoo: bar\n---\nThis is an excerpt.\n---\nThis is content";
 const file = matter(str, { excerpt: true });
 ```
 
 Results in:
 
 ```js
-{ 
+{
   content: 'This is an excerpt.\n---\nThis is content',
   data: { foo: 'bar' },
-  excerpt: 'This is an excerpt.\n' 
+  excerpt: 'This is an excerpt.\n'
 }
 ```
 
@@ -290,25 +293,28 @@ You can also set `excerpt` to a function. This function uses the 'file' and 'opt
 ```js
 // returns the first 4 lines of the contents
 function firstFourLines(file, options) {
-  file.excerpt = file.content.split('\n').slice(0, 4).join(' ');
+  file.excerpt = file.content.split("\n").slice(0, 4).join(" ");
 }
 
-const file =  matter([
-  '---',
-  'foo: bar',
-  '---',
-  'Only this',
-  'will be',
-  'in the',
-  'excerpt',
-  'but not this...'
-].join('\n'), {excerpt: firstFourLines});
+const file = matter(
+  [
+    "---",
+    "foo: bar",
+    "---",
+    "Only this",
+    "will be",
+    "in the",
+    "excerpt",
+    "but not this...",
+  ].join("\n"),
+  { excerpt: firstFourLines }
+);
 ```
 
 Results in:
 
 ```js
-{ 
+{
   content: 'Only this\nwill be\nin the\nexcerpt\nbut not this...',
   data: { foo: 'bar' },
   excerpt: 'Only this will be in the excerpt'
@@ -324,7 +330,7 @@ Results in:
 Define a custom separator to use for excerpts.
 
 ```js
-console.log(matter(string, {excerpt_separator: '<!-- end -->'}));
+console.log(matter(string, { excerpt_separator: "<!-- end -->" }));
 ```
 
 **Example**
@@ -335,6 +341,7 @@ The following HTML string:
 ---
 title: Blog
 ---
+
 My awesome blog.
 <!-- end -->
 <h1>Hello world</h1>
@@ -343,10 +350,10 @@ My awesome blog.
 Results in:
 
 ```js
-{ 
-  data: { title: 'Blog'}, 
-  excerpt: 'My awesome blog.', 
-  content: 'My awesome blog.\n<!-- end -->\n<h1>Hello world</h1>' 
+{
+  data: { title: 'Blog'},
+  excerpt: 'My awesome blog.',
+  content: 'My awesome blog.\n<!-- end -->\n<h1>Hello world</h1>'
 }
 ```
 
@@ -365,7 +372,7 @@ Engines may either be an object with `parse` and (optionally) `stringify` method
 **Examples**
 
 ```js
-const toml = require('toml');
+const toml = require("toml");
 
 /**
  * defined as a function
@@ -374,7 +381,7 @@ const toml = require('toml');
 const file = matter(str, {
   engines: {
     toml: toml.parse.bind(toml),
-  }
+  },
 });
 
 /**
@@ -388,11 +395,11 @@ const file = matter(str, {
 
       // example of throwing an error to let users know stringifying is
       // not supported (a TOML stringifier might exist, this is just an example)
-      stringify: function() {
-        throw new Error('cannot stringify to TOML');
-      }
-    }
-  }
+      stringify: function () {
+        throw new Error("cannot stringify to TOML");
+      },
+    },
+  },
 });
 
 console.log(file);
@@ -407,7 +414,7 @@ console.log(file);
 Define the engine to use for parsing front-matter.
 
 ```js
-console.log(matter(string, {language: 'toml'}));
+console.log(matter(string, { language: "toml" }));
 ```
 
 **Example**
@@ -420,6 +427,7 @@ title = "TOML"
 description = "Front matter"
 categories = "front matter toml"
 ---
+
 This is content
 ```
 
@@ -444,6 +452,7 @@ title = "TOML"
 description = "Front matter"
 categories = "front matter toml"
 ---
+
 This is content
 ```
 
@@ -459,18 +468,15 @@ Open and close delimiters can be passed in as an array of strings.
 
 ```js
 // format delims as a string
-matter.read('file.md', {delims: '~~~'});
+matter.read("file.md", { delims: "~~~" });
 // or an array (open/close)
-matter.read('file.md', {delims: ['~~~', '~~~']});
+matter.read("file.md", { delims: ["~~~", "~~~"] });
 ```
 
 would parse:
 
 ```html
-~~~
-title: Home
-~~~
-This is the {{title}} page.
+~~~ title: Home ~~~ This is the {{title}} page.
 ```
 
 ## Deprecated options
@@ -524,42 +530,42 @@ $ npm install -g verbose/verb#dev verb-generate-readme && verb
 
 You might also be interested in these projects:
 
-* [assemble](https://www.npmjs.com/package/assemble): Get the rocks out of your socks! Assemble makes you fast at creating web projects… [more](https://github.com/assemble/assemble) | [homepage](https://github.com/assemble/assemble "Get the rocks out of your socks! Assemble makes you fast at creating web projects. Assemble is used by thousands of projects for rapid prototyping, creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, building websit")
-* [metalsmith](https://www.npmjs.com/package/metalsmith): An extremely simple, pluggable static site generator. | [homepage](https://github.com/segmentio/metalsmith#readme "An extremely simple, pluggable static site generator.")
-* [verb](https://www.npmjs.com/package/verb): Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used… [more](https://github.com/verbose/verb) | [homepage](https://github.com/verbose/verb "Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used on hundreds of projects of all sizes to generate everything from API docs to readmes.")
-* [gray-matter-loader](https://github.com/atlassian/gray-matter-loader): A webpack loader for gray-matter. [homepage](https://github.com/atlassian/gray-matter-loader#gray-matter-loader)
+- [assemble](https://www.npmjs.com/package/assemble): Get the rocks out of your socks! Assemble makes you fast at creating web projects… [more](https://github.com/assemble/assemble) | [homepage](https://github.com/assemble/assemble "Get the rocks out of your socks! Assemble makes you fast at creating web projects. Assemble is used by thousands of projects for rapid prototyping, creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, building websit")
+- [metalsmith](https://www.npmjs.com/package/metalsmith): An extremely simple, pluggable static site generator. | [homepage](https://github.com/segmentio/metalsmith#readme "An extremely simple, pluggable static site generator.")
+- [verb](https://www.npmjs.com/package/verb): Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used… [more](https://github.com/verbose/verb) | [homepage](https://github.com/verbose/verb "Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used on hundreds of projects of all sizes to generate everything from API docs to readmes.")
+- [gray-matter-loader](https://github.com/atlassian/gray-matter-loader): A webpack loader for gray-matter. [homepage](https://github.com/atlassian/gray-matter-loader#gray-matter-loader)
 
 ### Contributors
 
-| **Commits** | **Contributor** | 
-| --- | --- |
-| 174 | [jonschlinkert](https://github.com/jonschlinkert) |
-| 7 | [RobLoach](https://github.com/RobLoach) |
-| 5 | [heymind](https://github.com/heymind) |
-| 4 | [doowb](https://github.com/doowb) |
-| 3 | [aljopro](https://github.com/aljopro) |
-| 2 | [reccanti](https://github.com/reccanti) |
-| 2 | [onokumus](https://github.com/onokumus) |
-| 2 | [moozzyk](https://github.com/moozzyk) |
-| 1 | [Ajedi32](https://github.com/Ajedi32) |
-| 1 | [caesar](https://github.com/caesar) |
-| 1 | [ianstormtaylor](https://github.com/ianstormtaylor) |
-| 1 | [qm3ster](https://github.com/qm3ster) |
-| 1 | [zachwhaley](https://github.com/zachwhaley) |
+| **Commits** | **Contributor**                                     |
+| ----------- | --------------------------------------------------- |
+| 174         | [jonschlinkert](https://github.com/jonschlinkert)   |
+| 7           | [RobLoach](https://github.com/RobLoach)             |
+| 5           | [heymind](https://github.com/heymind)               |
+| 4           | [doowb](https://github.com/doowb)                   |
+| 3           | [aljopro](https://github.com/aljopro)               |
+| 2           | [reccanti](https://github.com/reccanti)             |
+| 2           | [onokumus](https://github.com/onokumus)             |
+| 2           | [moozzyk](https://github.com/moozzyk)               |
+| 1           | [Ajedi32](https://github.com/Ajedi32)               |
+| 1           | [caesar](https://github.com/caesar)                 |
+| 1           | [ianstormtaylor](https://github.com/ianstormtaylor) |
+| 1           | [qm3ster](https://github.com/qm3ster)               |
+| 1           | [zachwhaley](https://github.com/zachwhaley)         |
 
 ### Author
 
 **Jon Schlinkert**
 
-* [LinkedIn Profile](https://linkedin.com/in/jonschlinkert)
-* [GitHub Profile](https://github.com/jonschlinkert)
-* [Twitter Profile](https://twitter.com/jonschlinkert)
+- [LinkedIn Profile](https://linkedin.com/in/jonschlinkert)
+- [GitHub Profile](https://github.com/jonschlinkert)
+- [Twitter Profile](https://twitter.com/jonschlinkert)
 
 ### License
 
 Copyright © 2018, [Jon Schlinkert](https://github.com/jonschlinkert).
 Released under the [MIT License](LICENSE).
 
-***
+---
 
 _This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.6.0, on April 01, 2018._
